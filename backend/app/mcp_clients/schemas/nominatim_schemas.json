@@ -1,0 +1,51 @@
+{
+  "geocode": {
+    "args": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "minLength": 2,
+          "description": "Search query for location"
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 50,
+          "default": 5,
+          "description": "Maximum number of results"
+        },
+        "country": {
+          "type": "string",
+          "description": "Country code to restrict search (e.g., 'us', 'fr')"
+        }
+      },
+      "required": ["query"],
+      "additionalProperties": false
+    },
+    "response": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "lat": {
+            "type": "number",
+            "description": "Latitude"
+          },
+          "lon": {
+            "type": "number",
+            "description": "Longitude"
+          },
+          "display_name": {
+            "type": "string",
+            "description": "Full display name"
+          },
+          "address": {
+            "type": "object",
+            "description": "Address components"
+          }
+        }
+      }
+    }
+  }
+}

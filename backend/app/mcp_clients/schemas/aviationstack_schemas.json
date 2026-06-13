@@ -1,0 +1,47 @@
+{
+  "get_flight_status": {
+    "args": {
+      "type": "object",
+      "properties": {
+        "dep_iata": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 3,
+          "pattern": "^[A-Z]{3}$",
+          "description": "Departure airport IATA code (e.g., JFK, HND)"
+        },
+        "arr_iata": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 3,
+          "pattern": "^[A-Z]{3}$",
+          "description": "Arrival airport IATA code (e.g., LAX, NRT)"
+        },
+        "flight_date": {
+          "type": ["string", "null"],
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "description": "Flight date in YYYY-MM-DD format (optional)"
+        }
+      },
+      "required": ["dep_iata", "arr_iata"],
+      "additionalProperties": false
+    },
+    "response": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["success", "error"]
+        },
+        "data": {
+          "type": "object"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": ["status"],
+      "additionalProperties": true
+    }
+  }
+}

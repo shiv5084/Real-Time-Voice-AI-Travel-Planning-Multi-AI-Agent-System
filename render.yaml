@@ -1,0 +1,43 @@
+# Render Blueprint Specification (render.yaml)
+# Declares the native Python web service for the Multi-Agent Travel Planner backend.
+
+services:
+  - type: web
+    name: voice-travel-backend
+    env: python
+    region: oregon # Render's default region (can be customized)
+    plan: free # Can be updated to 'starter' or higher for production traffic
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9 # Enforces Python 3.11.9 on Render's native runtime
+      - key: APP_ENV
+        value: production
+      - key: SUPABASE_URL
+        sync: false # Set in Render UI dashboard
+      - key: SUPABASE_ANON_KEY
+        sync: false
+      - key: SUPABASE_SERVICE_KEY
+        sync: false
+      - key: SUPABASE_DB_PASSWORD
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: UPSTASH_REDIS_URL
+        sync: false
+      - key: UPSTASH_REDIS_TOKEN
+        sync: false
+      - key: CORS_ORIGINS
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: MEM0_API_KEY
+        sync: false
+      - key: ELEVENLABS_API_KEY
+        sync: false
+      - key: MCP_SERVER_URL
+        value: https://multi-mcp-servers.onrender.com

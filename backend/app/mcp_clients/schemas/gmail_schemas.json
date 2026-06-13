@@ -1,0 +1,43 @@
+{
+  "send_email": {
+    "args": {
+      "type": "object",
+      "properties": {
+        "to": {
+          "type": "string",
+          "pattern": "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$",
+          "description": "Recipient email address"
+        },
+        "subject": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Email subject line"
+        },
+        "body": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Email body content"
+        }
+      },
+      "required": ["to", "subject", "body"],
+      "additionalProperties": false
+    },
+    "response": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["success", "error"]
+        },
+        "message": {
+          "type": "string"
+        },
+        "message_id": {
+          "type": ["string", "null"]
+        }
+      },
+      "required": ["status"],
+      "additionalProperties": true
+    }
+  }
+}

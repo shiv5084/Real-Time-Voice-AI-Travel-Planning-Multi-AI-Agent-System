@@ -1,0 +1,39 @@
+{
+  "tavily_search": {
+    "args": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "minLength": 2,
+          "description": "Search query string"
+        },
+        "search_depth": {
+          "type": "string",
+          "enum": ["basic", "advanced"],
+          "default": "basic",
+          "description": "Search depth — advanced gives richer results"
+        }
+      },
+      "required": ["query"],
+      "additionalProperties": false
+    },
+    "response": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["success", "error"]
+        },
+        "data": {
+          "type": "object"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": ["status"],
+      "additionalProperties": true
+    }
+  }
+}

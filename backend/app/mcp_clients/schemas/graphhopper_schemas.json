@@ -1,0 +1,76 @@
+{
+  "route": {
+    "args": {
+      "type": "object",
+      "properties": {
+        "origin": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 2,
+          "maxItems": 2,
+          "description": "Origin coordinates [longitude, latitude]"
+        },
+        "destination": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 2,
+          "maxItems": 2,
+          "description": "Destination coordinates [longitude, latitude]"
+        },
+        "profile": {
+          "type": "string",
+          "enum": ["car", "bike", "foot", "public_transport"],
+          "default": "car",
+          "description": "Routing profile"
+        },
+        "language": {
+          "type": "string",
+          "default": "en",
+          "description": "Language for instructions"
+        }
+      },
+      "required": ["origin", "destination"],
+      "additionalProperties": false
+    },
+    "response": {
+      "type": "object",
+      "properties": {
+        "paths": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "distance": {
+                "type": "number",
+                "description": "Distance in meters"
+              },
+              "time": {
+                "type": "number",
+                "description": "Time in milliseconds"
+              },
+              "points": {
+                "type": "string",
+                "description": "Encoded polyline"
+              },
+              "instructions": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": ["paths"],
+      "additionalProperties": true
+    }
+  }
+}
